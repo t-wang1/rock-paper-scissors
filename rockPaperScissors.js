@@ -1,5 +1,8 @@
+// Game
+
 let playerScore = 0;
 let computerScore = 0;
+const computerSelection = getComputerChoice();
 
 function getComputerChoice() {
     let items = ["rock", "paper", "scissors"];
@@ -8,16 +11,16 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection.toLowerCase() === computerSelection) {
+    if (playerSelection === computerSelection) {
         return "It's a tie!";
     }
-    else if ((playerSelection.toLowerCase() === "rock" && computerSelection === "paper") || (playerSelection.toLowerCase() === "paper" && computerSelection === "scissors") || (playerSelection.toLowerCase() === "scissors" && computerSelection === "rock")) {
+    else if ((playerSelection === "rock" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "rock")) {
         computerScore++;
-        return " You Lose. " + computerSelection + " beats " + playerSelection.toLowerCase() + ". Your opponent's current record is " + computerScore;
+        return " You Lose. " + computerSelection + " beats " + playerSelection + ". Your opponent's current record is " + computerScore;
     }
     else {
         playerScore++;
-        return " You Win! " + playerSelection.toLowerCase() + " beats " + computerSelection + ". Your current record is " + playerScore;
+        return " You Win! " + playerSelection + " beats " + computerSelection + ". Your current record is " + playerScore;
     }
 }
 
@@ -33,20 +36,33 @@ function countScore() {
     }
 }
 
-const rock = document.querySelector('#rock');
-rock.addEventListener('click', () =>  {
-    alert("you chose rock");
-});
+// UI
 
-const paper = document.querySelector('#paper');
-paper.addEventListener('click', () =>  {
-    alert("you chose paper");
-});
+function displayResults() {
+    
+}
 
-const scissors = document.querySelector('#scissors');
-rock.addEventListener('click', () =>  {
-    alert("you chose scissors");
-});
+window.onload = function() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.addEventListener('click',() => {
+            const output = button.querySelector("output");
+            playerSelection = output;
+
+
+            alert("you chose " + button.id);
+        
+            playRound(playerSelection, computerSelection);
+
+            if (playerScore === 5 || computerScore === 5) {
+                displayResults();
+            }
+        
+        });
+    });
+
+    
+
+};
 
 countScore();
-game();
