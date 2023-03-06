@@ -14,7 +14,7 @@ function playRound(playerSelection, computerSelection) {
     }
     else if ((playerSelection === "rock" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "rock")) {
         computerScore++;
-        alert(" You Lose. " + computerSelection + " beats " + playerSelection + ". Your opponent's current record is " + computerScore);
+        alert("You Lose. " + computerSelection + " beats " + playerSelection + ". Your opponent's current record is " + computerScore);
     }
     else {
         playerScore++;
